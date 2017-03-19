@@ -1,0 +1,41 @@
+<div class="navbar-left col-xs-1">
+  <div class="navbar-left__nodes">
+    <div class="node node--search" ng-click="openSearch()" click-outside="closeSearch()">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="node__search" ng-class="{'node__search--show': search}" ng-model="text" ng-change="filterByText(text)" type="text"/>
+      <span ng-if="!search">SEARCH</span>
+    </div>
+    <div class="node" ng-click="toggleFilterPosts()">
+      <i class="fa fa-filter" aria-hidden="true"></i>
+      <span>FILTER POSTS</span>
+      <div class="node__content" ng-class="{'node__content--show': filters}">
+        <div class="content" ng-class="{'content--show': filters}">
+          <div ng-repeat="tag in tags" ng-if="filters">
+            <div class="filter" ng-model="tag" ng-click="filterPosts(tag)">{{tag.name}}</div>
+          </div>
+          <div ng-repeat="category in categories" ng-if="filters">
+            <div class="filter" ng-model="category" ng-click="filterPosts(category)">{{category.name}}</div>
+          </div>
+          <span ng-if="filters">reset filters</span>
+        </div>
+      </div>
+    </div>
+    <div class="node" ng-click="goToGithub()">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <span>ABOUT ME</span>
+    </div>
+    <div class="node" ng-click="goToPanel()">
+      <i class="fa fa-book" aria-hidden="true"></i>
+      <span>PANEL</span>
+    </div>
+    <div class="node" ng-click="toggleSign()">
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+      <span>LOG IN</span>
+      <div class="node__content" ng-class="{'node__content--show': sign}">
+        <div class="content" ng-class="{'content--show': sign}">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

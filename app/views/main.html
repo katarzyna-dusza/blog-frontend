@@ -1,0 +1,70 @@
+<div class="favourite col-xs-12">
+  <h1>Your favourite posts</h1>
+</div>
+<div class="posts col-xs-12">
+  <div ng-repeat="favouritePost in favouritePosts">
+    <div class="col-xs-4">
+      <div class="post-content">
+        <div class="post-content__hover">
+          <div class="title">
+            <h2>{{favouritePost.title}}</h2>
+          </div>
+          <div class="date">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Created: {{favouritePost.created | amDateFormat:'DD MMM YYYY, H:mm'}}
+          </div>
+          <div class="read-more">
+            <div class="read-more__btn">
+              Read more
+            </div>
+          </div>
+        </div>
+        <img class="post-content__image" ng-src="{{favouritePost.photoLink}}" />
+        <div class="post-content__opinion">
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{favouritePost.likes.length}}
+          <i class="fa fa-comment-o" aria-hidden="true"></i> {{favouritePost.comments.length}}
+        </div>
+        <div class="post-content__text">{{favouritePost.content}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="next col-xs-4">
+    <div class="post-content post-content--next">
+      <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>
+<div class="newest col-xs-12">
+  <h1>Newest posts</h1>
+</div>
+<div class="posts col-xs-12">
+  <div ng-repeat="post in posts">
+    <div class="col-xs-4">
+      <div class="post-content">
+        <div class="post-content__hover">
+          <div class="title">
+            <h2>{{post.title}}</h2>
+          </div>
+          <div class="date">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Created: {{post.created | amDateFormat:'DD MMM YYYY, H:mm'}}
+          </div>
+          <div class="read-more">
+            <div class="read-more__btn">
+              Read more
+            </div>
+          </div>
+        </div>
+        <img class="post-content__image" ng-src="{{post.photoLink}}" />
+        <div class="post-content__opinion">
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{post.likes.length}}
+          <i class="fa fa-comment-o" aria-hidden="true"></i> {{post.comments.length}}
+        </div>
+        <div class="post-content__text">{{post.content}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="next col-xs-4">
+    <div class="post-content post-content--next">
+      <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>
