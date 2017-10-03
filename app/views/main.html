@@ -13,7 +13,7 @@
             <i class="fa fa-clock-o" aria-hidden="true"></i> Created: {{favouritePost.created | amDateFormat:'DD MMM YYYY, H:mm'}}
           </div>
           <div class="read-more">
-            <div class="read-more__btn">
+            <div class="read-more__btn" ng-click="readMore(favouritePost._id)">
               Read more
             </div>
           </div>
@@ -48,7 +48,7 @@
             <i class="fa fa-clock-o" aria-hidden="true"></i> Created: {{post.created | amDateFormat:'DD MMM YYYY, H:mm'}}
           </div>
           <div class="read-more">
-            <div class="read-more__btn">
+            <div class="read-more__btn" ng-click="readMore(post._id)">
               Read more
             </div>
           </div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <ng-include src="'views/navbar.html'"></ng-include>
+  <div class="welcome-page" ng-style="{'background-image': 'url(' + post.photoLink + ')'}">
+  <!--<div class="welcome-page" ng-style="{'color': '#000'}">-->
+    <div class="welcome-page__text">
+    </div>
+  </div>
+
+  <div class="posts col-xs-12">
+    <h3>{{post.title}}</h3>
+    <div class="welcome-page__line"></div>
+    {{post.content}}
+  </div>
+
+  <div class="form col-xs-12">
+    <div class="form__data">
+      <div class="label">User Name</div>
+      <input type="text" value="username">
+    </div>
+    <div class="form__data">
+      <div class="label">Comment</div>
+      <input type="text" value="comment">
+    </div>
+    <button class="btn-primary">Submit</button>
+  </div>
+</div>

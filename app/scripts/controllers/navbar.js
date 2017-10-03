@@ -1,19 +1,14 @@
 'use strict';
 
-angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$scope', '$window', 'moment', 'Posts', '_', function ($location, $log, $scope, $window, moment, Posts, _) {
+angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope', '$window', 'moment', 'Posts', '_', function ($location, $log, $scope, $window, moment, Posts, _) {
   $scope.search = false;
   $scope.filters = false;
   $scope.sign = false;
   $scope.activeFilters = [];
   $scope.testH = false;
 
-  $scope.readMore = function(id) {
-    $location.url('/article/' + id);
-  };
-
   $scope.goBack = function() {
     $scope.filters = !$scope.filters;
-    $location.url('/');
   };
 
   var decorateTagAndCategory = function(elements, flag) {
@@ -32,42 +27,6 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$scope',
     });
   };
 
-  var getAllPosts = function() {
-    Posts
-      .query()
-      .$promise
-      .then(function(posts) {
-        $scope.posts = posts;
-      })
-      ['catch'](function (err) {
-        $log.error(err);
-      });
-  };
-
-  var getFavouritePosts = function(username) {
-    Posts
-      .getMyFavouritePosts({userName: username})
-      .$promise
-      .then(function(posts) {
-        $scope.favouritePosts = posts;
-      })
-      ['catch'](function (err) {
-        $log.error(err);
-      });
-  };
-
-  var getPostById = function(id) {
-    Posts
-      .getPostById({id: id})
-      .$promise
-      .then(function(post) {
-        $scope.post = post;
-      })
-      ['catch'](function (err) {
-        $log.error(err);
-      });
-  };
-
   var getAllTags = function() {
     Posts
       .getAllTags()
@@ -76,8 +35,8 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$scope',
         $scope.tags = decorateTagAndCategory(tags, 'tags');
       })
       ['catch'](function (err) {
-        $log.error(err);
-      });
+      $log.error(err);
+    });
   };
 
   var getAllCategories = function() {
@@ -88,20 +47,19 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$scope',
         $scope.categories = decorateTagAndCategory(categories, 'categories');
       })
       ['catch'](function (err) {
-        $log.error(err);
-      });
+      $log.error(err);
+    });
   };
 
   var onLoad = function() {
-    getAllPosts();
-    getFavouritePosts("NormalUser");
+
   };
 
-  $scope.goBack = function() {
-    $scope.search = false;
-    $scope.filters = false;
-    $scope.sign = false;
-  };
+  // $scope.goBack = function() {
+  //   $scope.search = false;
+  //   $scope.filters = false;
+  //   $scope.sign = false;
+  // };
 
   $scope.openSearch = function() {
     $scope.filters = false;
@@ -121,8 +79,8 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$scope',
         $scope.posts = posts;
       })
       ['catch'](function (err) {
-        $log.error(err);
-      });
+      $log.error(err);
+    });
   };
 
   $scope.toggleFilterPosts = function() {
@@ -150,8 +108,8 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$scope',
         $scope.posts = posts;
       })
       ['catch'](function (err) {
-        $log.error(err);
-      });
+      $log.error(err);
+    });
   };
 
   $scope.goToGithub = function() {

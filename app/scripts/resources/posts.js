@@ -35,9 +35,6 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
             text: '@text'
           }
         },
-        getPostsByDates: {
-
-        },
         getPostsByTags: {
           method: 'GET',
           isArray: true,
