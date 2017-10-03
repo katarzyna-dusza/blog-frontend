@@ -3,18 +3,18 @@
 angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
   function ($http, $resource, Config) {
     return $resource(
-      Config.apiUrl(),
+      Config.apiUrl,
       {},
       {
         query: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/posts'
+          url: Config.apiUrl + '/posts'
         },
         getPostById: {
           method: 'GET',
           isArray: false,
-          url: Config.apiUrl() + '/posts/:id',
+          url: Config.apiUrl + '/posts/:id',
           params: {
             id: '@id'
           }
@@ -22,7 +22,7 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
         getPostsByCategories: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/posts?categories=:categories',
+          url: Config.apiUrl + '/posts?categories=:categories',
           params: {
             categories: '@categories'
           }
@@ -30,7 +30,7 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
         getPostsByText: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/posts?text=:text',
+          url: Config.apiUrl + '/posts?text=:text',
           params: {
             text: '@text'
           }
@@ -38,7 +38,7 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
         getPostsByTags: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/posts?tags=:tags',
+          url: Config.apiUrl + '/posts?tags=:tags',
           params: {
             tags: '@tags'
           }
@@ -46,7 +46,7 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
         getMyFavouritePosts: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/posts?userName=:userName',
+          url: Config.apiUrl + '/posts?userName=:userName',
           params: {
             userName: '@userName'
           }
@@ -54,17 +54,17 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
         getAllCategories: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/categories'
+          url: Config.apiUrl + '/categories'
         },
         getAllTags: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/tags'
+          url: Config.apiUrl + '/tags'
         },
         filterPostsByTagsAndCategories: {
           method: 'GET',
           isArray: true,
-          url: Config.apiUrl() + '/posts?tags=:tags&categories=:categories',
+          url: Config.apiUrl + '/posts?tags=:tags&categories=:categories',
           params: {
             'tags': '@tags',
             'categories': '@categories'

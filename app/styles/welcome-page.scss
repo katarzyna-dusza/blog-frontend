@@ -1,28 +1,35 @@
+@keyframes read-more {
+  0%   {margin-top: 10%;}
+  25%  {margin-top: 8%;}
+  50%  {margin-top: 9%;}
+  75%  {margin-top: 8.5%;}
+  100% {margin-top: 10%;}
+}
+
 .welcome-page {
+  height: 100vh;
+  color: $welcome-page;
+  text-align: center;
+  font-weight: 100;
   background-image: $welcome-image;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  height: 100vh;
-  color: $welcome-page;
   overflow-x: hidden;
-  text-align: center;
-  font-weight: 100;
 
   &__text {
-    font-family: $welcome-page-text;
     margin-left: 250px;
     position: relative;
     top: 40%;
+    font-family: $welcome-page-text;
     transform: translateY(-50%);
   }
 
   &__line {
-    border-bottom: 1px solid;
     width: 80px;
     margin: auto;
-    color: $aqua;
+    border-bottom: 1px solid $aqua;
   }
 
   h1 {
@@ -30,33 +37,31 @@
   }
 
   h3 {
+    margin: 0 auto 10px;
     font-size: 25px;
     font-family: $welcome-page-blog;
     font-style: normal;
-    margin: 0 auto 10px;
     font-weight: 700;
   }
 
   p {
     margin-left: 45%;
-    font-size: 20px;
     color: $aqua;
+    font-size: 20px;
   }
 
-  //&__read-more {
-  //
-  //}
-  //
-  //.scroll {
-  //  position: fixed;
-  //  width: 50px;
-  //  height: 50px;
-  //  background-color: black;
-  //  border-radius: 5px;
-  //  opacity: 0.3;
-  //  visibility: hidden;
-  //  right: 20px;
-  //  bottom: 20px;
-  //  cursor: pointer;
-  //}
+  &__read-more {
+    margin-top: 10%;
+    position: fixed;
+    left: 48.5%;
+    top: 20;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      animation-name: read-more;
+      animation-duration: 0.4s;
+      animation-iteration-count: 1;
+    }
+  }
 }
