@@ -1,33 +1,30 @@
-// bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
+.header {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  padding-right: 50px;
+  font-family: $primary-font;
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+  h1 {
+    font-weight: bold;
+  }
 
-body {
-  padding: 0;
-}
-
-.container {
-  width: 100%;
-  padding: 0;
+  .line {
+    width: 80px;
+    margin-bottom: 20px;
+    color: $aqua;
+    border-bottom: 1px solid;
+  }
 }
 
 .posts {
-  padding-right: 50px;
   margin-left: 250px;
   width: calc(100% - 250px);
 
   .post-content {
     height: 450px;
     width: 350px;
-    background-color: $background-navbar;
     margin: 20px auto;
+    background-color: $background;
 
     &__image {
       height: 200px;
@@ -41,10 +38,10 @@ body {
 
     &__opinion {
       margin-top: -20px;
-      float: right;
       margin-right: 20px;
-      color: $white;
       position: relative;
+      color: $white;
+      float: right;
 
       fa {
         margin-left: 20px;
@@ -52,47 +49,47 @@ body {
     }
 
     &__text {
-      color: $white;
       height: 215px;
       padding: 40px 40px 0 40px;
-      font-family: $welcome-page-text;
+      color: $white;
+      font-family: $post-text;
       font-size: 21px;
       overflow: hidden;
     }
 
     &__hover {
-      width: 350px;
       height: 0;
-      position: absolute;
-      background-color: rgba($post-hover, 0.9);
+      width: 350px;
       text-align: center;
       color: $post-hover-text;
-      opacity: 0;
+      background-color: rgba($post-hover, 0.9);
+      position: absolute;
       bottom: 20px;
+      opacity: 0;
       transition: height 0.8s, opacity 0.8s;
 
       .title {
-        font-family: $welcome-page-text;
         height: 200px;
         width: 350px;
         margin-top: -20px;
-        vertical-align: middle;
-        display: none;
+        font-family: $post-text;
         font-weight: 400;
+        display: none;
+        vertical-align: middle;
       }
 
       .date {
-        float: right;
-        margin-right: 20px;
         margin-top: -20px;
+        margin-right: 20px;
+        float: right;
         font-style: italic;
       }
     }
 
     &--next {
-      background-color: $post-hover;
-      color: $post-hover-text;
       text-align: center;
+      color: $post-hover-text;
+      background-color: $post-hover;
       display: table-cell;
       vertical-align: middle;
 
@@ -118,22 +115,23 @@ body {
 
     .read-more {
       height: 250px;
-      vertical-align: middle;
       width: 350px;
-      cursor: pointer;
       display: none;
+      vertical-align: middle;
+      cursor: pointer;
 
       &__btn {
         height: auto;
-        border: 2px solid $aqua;
-        font-family: $navbar-node;
-        font-weight: 900;
-        font-size: 20px;
-        text-align: center;
-        padding: 10px 20px;
         width: 130px;
         margin: auto;
+        padding: 10px 20px;
+        text-align: center;
         background-color: $aqua;
+        font-family: $primary-font;
+        font-weight: 900;
+        font-size: 20px;
+        border: 2px solid $aqua;
+        outline: none;
       }
     }
   }
@@ -142,17 +140,3 @@ body {
 .next {
   margin-top: 20px;
 }
-
-.favourite, .newest {
-  padding-right: 50px;
-  margin-left: 250px;
-  width: calc(100% - 250px);
-}
-
-//.footer {
-//  padding-top: 19px;
-//  color: #777;
-//  border-top: 1px solid #e5e5e5;
-//}
-
-
