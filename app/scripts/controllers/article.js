@@ -1,134 +1,111 @@
 'use strict';
 
-angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$routeParams', '$scope', '$window', 'moment', 'Posts', '_', function ($location, $log, $routeParams, $scope, $window, moment, Posts, _) {
-  $scope.search = false;
-  $scope.filters = true;
-  $scope.sign = false;
-  $scope.activeFilters = [];
-  $scope.testH = false;
+angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$routeParams', '$rootScope', '$scope', 'moment', 'Posts', '_',
+  function ($location, $log, $routeParams, $rootScope, $scope, moment, Posts, _) {
+    var USER_OBJECT = {"username": "Normal User"};
+    var USER_AVATAR = "https://static.pexels.com/photos/348528/pexels-photo-348528.jpeg";
 
-  $scope.goBack = function() {
-    $scope.filters = !$scope.filters;
-    $location.url('/');
-  };
+    $scope.activeFilters = [];
+    $scope.like = false;
 
-  var decorateTagAndCategory = function(elements, flag) {
-    if ('categories' === flag) {
-      return _.map(elements, function(elem) {
-        return {
-          name: elem, type: 'category', selected: false
-        }
-      });
-    }
+    $scope.toggleLike = function(like) {
+      toggleLike(like);
 
-    return _.map(elements, function(elem) {
-      return {
-        name: elem, type: 'tag', selected: false
+      Posts
+        .toggleLike({id: $routeParams.id}, $scope.post.likes)
+        .$promise
+        .then(function() {
+          $scope.like = !$scope.like;
+          onLoad();
+        })
+        ['catch'](function (err) {
+          $log.error(err);
+        });
+    };
+
+    $scope.addMyComment = function() {
+      addComment();
+
+      Posts
+        .addComment({id: $routeParams.id}, $scope.post.comments)
+        .$promise
+        .then(function() {
+          onLoad();
+        })
+        ['catch'](function (err) {
+          $log.error(err);
+        });
+    };
+
+    $scope.goBack = function() {
+      $location.url('/');
+    };
+
+    var likedByMe = function() {
+      if (!_.isUndefined($scope.post.likes)) {
+        var likes = $scope.post.likes;
+
+        return !_.isEmpty(_.where(likes, USER_OBJECT));
       }
-    });
-  };
 
-  var getPostById = function(id) {
-    Posts
-      .getPostById({id: id})
-      .$promise
-      .then(function(post) {
-        $scope.post = post;
-      })
-      ['catch'](function (err) {
-      $log.error(err);
-    });
-  };
+      return false;
+    };
 
-  var getAllTags = function() {
-    Posts
-      .getAllTags()
-      .$promise
-      .then(function(tags) {
-        $scope.tags = decorateTagAndCategory(tags, 'tags');
-      })
-      ['catch'](function (err) {
-      $log.error(err);
-    });
-  };
+    var addLike = function() {
+      if (_.isUndefined($scope.post.likes)) {
+        return _.extend($scope.post, {likes: [USER_OBJECT]});
+      }
 
-  var getAllCategories = function() {
-    Posts
-      .getAllCategories()
-      .$promise
-      .then(function(categories) {
-        $scope.categories = decorateTagAndCategory(categories, 'categories');
-      })
-      ['catch'](function (err) {
-      $log.error(err);
-    });
-  };
+      return $scope.post.likes.push(USER_OBJECT);
+    };
 
-  var onLoad = function() {
-    var articleId = $routeParams.id;
-    getPostById(articleId);
-  };
+    var removeLike = function() {
+      var index = _.indexOf($scope.post.likes, USER_OBJECT);
 
-  $scope.goBack = function() {
-    $scope.search = false;
-    $scope.filters = false;
-    $scope.sign = false;
-  };
+      $scope.post.likes.splice(index, 1);
+    };
 
-  $scope.openSearch = function() {
-    $scope.filters = false;
-    $scope.sign = false;
-    $scope.search = true;
-  };
+    var toggleLike = function(like) {
+      if (like) {
+        return removeLike();
+      }
 
-  $scope.closeSearch = function() {
-    $scope.search = false;
-  };
+      return addLike();
+    };
 
-  $scope.filterByText = function(text) {
-    Posts
-      .getPostsByText({text: text})
-      .$promise
-      .then(function(posts) {
-        $scope.posts = posts;
-      })
-      ['catch'](function (err) {
-      $log.error(err);
-    });
-  };
+    var addComment = function() {
+      var comment = {
+        avatar: USER_AVATAR,
+        username: $scope.userName,
+        text: $scope.comment
+      };
 
-  $scope.toggleFilterPosts = function() {
-    $scope.sign = false;
-    $scope.search = false;
-    $scope.filters = !$scope.filters;
+      if (_.isUndefined($scope.post.comments)) {
+        return _.extend($scope.post, {comments: [comment]});
+      }
 
-    getAllCategories();
-    getAllTags();
-  };
+      return $scope.post.comments.push(comment);
+    };
 
-  $scope.filterPosts = function(filter) {
-    filter.selected = !filter.selected;
-    $scope.activeFilters.push(filter);
-    var tags = _.pluck(_.where($scope.activeFilters, {type: 'tag'}), 'name').toString();
-    var categories = _.pluck(_.where($scope.activeFilters, {type: 'category'}), 'name').toString();
+    var getPostById = function(id) {
+      Posts
+        .getPostById({id: id})
+        .$promise
+        .then(function(post) {
+          $scope.post = post;
+          $scope.like = likedByMe();
+        })
+        ['catch'](function (err) {
+          $log.error(err);
+        });
+    };
 
-    Posts
-      .filterPostsByTagsAndCategories({
-        'tags': tags,
-        'categories': categories
-      })
-      .$promise
-      .then(function(posts) {
-        $scope.posts = posts;
-      })
-      ['catch'](function (err) {
-      $log.error(err);
-    });
-  };
+    var onLoad = function() {
+      var articleId = $routeParams.id;
+      $rootScope.$emit('readArticle');
+      getPostById(articleId);
+    };
 
-  $scope.goToGithub = function() {
-    $window.location.href = "https://katarzyna-dusza.github.io";
-  };
-
-  onLoad();
-}]);
+    onLoad();
+  }
+]);

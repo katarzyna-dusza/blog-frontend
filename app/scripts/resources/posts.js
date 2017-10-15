@@ -69,6 +69,22 @@ angular.module('blogApp').service('Posts', ['$http', '$resource', 'Config',
             'tags': '@tags',
             'categories': '@categories'
           }
+        },
+        toggleLike: {
+          method: 'PUT',
+          hasBody: true,
+          url: Config.apiUrl + '/posts/:id/likes',
+          params: {
+             'id': '@id'
+          }
+        },
+        addComment: {
+          method: 'PUT',
+          hasBody: true,
+          url: Config.apiUrl + '/posts/:id/comments',
+          params: {
+            'id': '@id'
+          }
         }
       }
     );

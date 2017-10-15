@@ -3,6 +3,15 @@
   margin: 25px 0;
   height: 25px;
 
+  &--mobile {
+    display: none;
+    position: absolute;
+
+    @media screen and (max-width: 400px) {
+      display: block;
+    }
+  }
+
   .line {
     width: 40px;
     height: 2px;
@@ -40,13 +49,26 @@
 
 .navbar-left {
   position: fixed;
-  background-color: $background-navbar;
+  background-color: $background;
   height: 100vh;
   top: 0;
   left: 0;
   width: 250px;
   overflow-y: scroll;
+  z-index: 1;
   transition: width 2s ease-in-out;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+
+  &--mobile {
+    display: none;
+
+    @media screen and (max-width: 400px) {
+      display: block;
+    }
+  }
 
   &__filters {
     padding: 15px;
@@ -72,7 +94,7 @@
       color: $white;
       font-size: 20px;
       padding: 10px 0 10px 50px;
-      font-family: $navbar-node;
+      font-family: $primary-font;
       width: 100%;
       cursor: pointer;
       outline: none;
@@ -86,6 +108,10 @@
         margin-right: 5px;
       }
 
+      &--noclicable {
+        cursor: default;
+      }
+
       &__search {
         border-radius: 20px;
         width: 0;
@@ -93,9 +119,10 @@
         border: none;
         outline: none;
         color: black;
-        transition: width 0.6s, border-radius 0.6s, background 0.6s;
+        transition: width 0.6s, border-radius 0.6s, background 0.6s, padding-left 0.1s;
 
         &--show {
+          padding-left: 10px;
           width: 120px;
           background: rgb(235, 235, 235);
         }
@@ -105,42 +132,6 @@
         background-color: $node-hover;
       }
     }
-
-    //.content {
-    //  &--show {
-    //    input {
-    //      width: 100px !important;
-    //    }
-    //
-    //    .management-filter {
-    //      span {
-    //        width: 80px !important;
-    //      }
-    //    }
-    //  }
-    //
-    //  input {
-    //    width: 0;
-    //    transition: width 0.8s;
-    //    padding: 0;
-    //    border: none;
-    //  }
-    //
-    //  .management-filter {
-    //    height: 40px;
-    //    background-color: $aqua;
-    //    border-radius: 10px;
-    //    text-align: center;
-    //    display: table-cell;
-    //    vertical-align: middle;
-    //
-    //    span {
-    //      overflow-x: hidden;
-    //      width: 0;
-    //      transition: width 0.8s;
-    //    }
-    //  }
-    //}
   }
 
   .tags, .categories {
@@ -148,7 +139,7 @@
     margin: 5px;
     color: $white;
     font-size: 20px;
-    font-family: $navbar-node;
+    font-family: $primary-font;
     outline: none;
 
     &__filter {

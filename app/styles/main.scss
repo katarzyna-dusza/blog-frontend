@@ -29,6 +29,9 @@
     &__image {
       height: 200px;
       width: 350px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
 
       img {
         width: 300px;
@@ -42,8 +45,9 @@
       position: relative;
       color: $white;
       float: right;
+      display: flex;
 
-      fa {
+      .fa {
         margin-left: 20px;
       }
     }
@@ -92,6 +96,7 @@
       background-color: $post-hover;
       display: table-cell;
       vertical-align: middle;
+      cursor: default;
 
       .fa-5x {
         font-size: 10em;
@@ -99,7 +104,7 @@
     }
 
     &:hover {
-      .post-content__opinion{
+      .post-content__opinion {
         display: none;
       }
       .post-content__hover {
@@ -107,7 +112,14 @@
         opacity: 1;
       }
 
-      .title,
+      .title {
+        display: block;
+
+        h2 {
+          line-height: 200px;
+        }
+      }
+
       .read-more {
         display: table-cell;
       }
@@ -139,4 +151,8 @@
 
 .next {
   margin-top: 20px;
+}
+
+.my-opinion {
+  color: $aqua;
 }

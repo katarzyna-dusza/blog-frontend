@@ -8,6 +8,45 @@
     <div class="node node--search" ng-click="openSearch()" click-outside="closeSearch()">
       <i class="fa fa-search" aria-hidden="true"></i>
       <input class="node__search" ng-class="{'node__search--show': search}" ng-model="text" ng-change="filterByText(text)" type="text"/>
+      <span ng-if="!search" ng-click="openSearch()">SEARCH</span>
+    </div>
+    <div class="node" ng-click="toggleFilterPosts()">
+      <i class="fa fa-filter" aria-hidden="true"></i>
+      <span>FILTER POSTS</span>
+    </div>
+    <div class="node" ng-click="goToGithub()">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <span>ABOUT ME</span>
+    </div>
+    <div class="node node--noclicable">
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+      <span>LOG IN</span>
+    </div>
+  </div>
+  <div class="navbar-left__filters" ng-if="filters">
+    <div class="tags" ng-repeat="tag in tags" ng-if="filters">
+      <div class="tags__filter" ng-class="{'tags__filter--selected': tag.selected}" ng-model="tag" ng-click="filterPosts(tag)">
+        {{tag.name}}
+      </div>
+    </div>
+    <div class="categories" ng-repeat="category in categories" ng-if="filters">
+      <div class="categories__filter" ng-class="{'categories__filter--selected': category.selected}" ng-model="category" ng-click="filterPosts(category)">
+        {{category.name}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hamburger hamburger--mobile" ng-click="goBack()">
+  <span class="line line--first" ng-class="{'line--first--arrow': filters}"></span>
+  <span class="line"></span>
+  <span class="line" ng-class="{'line--last--arrow': filters}"></span>
+</div>
+<div class="navbar-left navbar-left--mobile" ng-if="filters" ng-controller="NavbarCtrl">
+  <div class="navbar-left__nodes" ng-class="{'navbar-left__nodes--close': filters}" ng-if="!filters">
+    <div class="node node--search" ng-click="openSearch()" click-outside="closeSearch()">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="node__search" ng-class="{'node__search--show': search}" ng-model="text" ng-change="filterByText(text)" type="text"/>
       <span ng-if="!search">SEARCH</span>
     </div>
     <div class="node" ng-click="toggleFilterPosts()">
@@ -18,7 +57,7 @@
       <i class="fa fa-user" aria-hidden="true"></i>
       <span>ABOUT ME</span>
     </div>
-    <div class="node">
+    <div class="node node--noclicable">
       <i class="fa fa-sign-in" aria-hidden="true"></i>
       <span>LOG IN</span>
     </div>

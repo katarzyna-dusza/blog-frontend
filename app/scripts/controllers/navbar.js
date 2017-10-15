@@ -1,14 +1,21 @@
 'use strict';
 
-angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope', '$window', 'moment', 'Posts', '_', function ($location, $log, $scope, $window, moment, Posts, _) {
+angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$rootScope', '$scope', '$window', 'moment', 'Posts', '_', function ($location, $log, $rootScope, $scope, $window, moment, Posts, _) {
   $scope.search = false;
   $scope.filters = false;
-  $scope.sign = false;
+  $scope.article = false;
   $scope.activeFilters = [];
-  $scope.testH = false;
+
+  $rootScope.$on('readArticle', function() {
+    $scope.article = !$scope.article;
+  });
 
   $scope.goBack = function() {
-    $scope.filters = !$scope.filters;
+    $scope.search = false;
+    $scope.filters = false;
+    $scope.article = false;
+
+    $location.url('/');
   };
 
   var decorateTagAndCategory = function(elements, flag) {
@@ -35,8 +42,8 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope
         $scope.tags = decorateTagAndCategory(tags, 'tags');
       })
       ['catch'](function (err) {
-      $log.error(err);
-    });
+        $log.error(err);
+      });
   };
 
   var getAllCategories = function() {
@@ -47,23 +54,23 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope
         $scope.categories = decorateTagAndCategory(categories, 'categories');
       })
       ['catch'](function (err) {
-      $log.error(err);
-    });
+        $log.error(err);
+      });
   };
 
-  var onLoad = function() {
+  var manageSelectedFilters = function(filter) {
+    var index = -1;
 
+    if (filter.selected) {
+      index = _.indexOf($scope.activeFilters, filter);
+      return $scope.activeFilters.splice(index, 1);
+    }
+
+    $scope.activeFilters.push(filter);
   };
-
-  // $scope.goBack = function() {
-  //   $scope.search = false;
-  //   $scope.filters = false;
-  //   $scope.sign = false;
-  // };
 
   $scope.openSearch = function() {
     $scope.filters = false;
-    $scope.sign = false;
     $scope.search = true;
   };
 
@@ -76,15 +83,14 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope
       .getPostsByText({text: text})
       .$promise
       .then(function(posts) {
-        $scope.posts = posts;
+        $rootScope.$emit('filteredPosts', posts);
       })
       ['catch'](function (err) {
-      $log.error(err);
-    });
+        $log.error(err);
+      });
   };
 
   $scope.toggleFilterPosts = function() {
-    $scope.sign = false;
     $scope.search = false;
     $scope.filters = !$scope.filters;
 
@@ -93,8 +99,9 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope
   };
 
   $scope.filterPosts = function(filter) {
+    manageSelectedFilters(filter);
     filter.selected = !filter.selected;
-    $scope.activeFilters.push(filter);
+
     var tags = _.pluck(_.where($scope.activeFilters, {type: 'tag'}), 'name').toString();
     var categories = _.pluck(_.where($scope.activeFilters, {type: 'category'}), 'name').toString();
 
@@ -105,16 +112,14 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$scope
       })
       .$promise
       .then(function(posts) {
-        $scope.posts = posts;
+        $rootScope.$emit('filteredPosts', posts);
       })
       ['catch'](function (err) {
-      $log.error(err);
-    });
+        $log.error(err);
+      });
   };
 
   $scope.goToGithub = function() {
     $window.location.href = "https://katarzyna-dusza.github.io";
   };
-
-  onLoad();
 }]);

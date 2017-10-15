@@ -53,10 +53,14 @@
   &__read-more {
     margin-top: 10%;
     position: fixed;
-    left: 48.5%;
-    top: 20;
+    left: 45.5%;
     border-radius: 5px;
     cursor: pointer;
+
+    .fa {
+      height: 100px;
+      width: 100px;
+    }
 
     &:hover {
       animation-name: read-more;
