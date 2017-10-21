@@ -1,70 +1,86 @@
-<div class="header col-xs-12">
-  <h1>Your favourite posts</h1>
-  <div class="line"></div>
-</div>
-<div class="posts col-xs-12">
-  <div ng-repeat="favouritePost in favouritePosts">
-    <div class="col-xs-12 col-md-6 col-lg-4">
-      <div class="post-content">
-        <div class="post-content__hover">
-          <div class="title">
-            <h2>{{favouritePost.title}}</h2>
-          </div>
-          <div class="read-more">
-            <div class="read-more__btn" ng-click="readMore(favouritePost._id)">Read more</div>
-          </div>
-        </div>
-        <div class="post-content__image" ng-style="{'background-image': 'url(' + favouritePost.photoLink + ')'}"></div>
-        <div class="post-content__opinion">
-          <div ng-if="0 < favouritePost.likes.length" ng-class="{'my-opinion': likedByMe(favouritePost._id)}">
-            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{favouritePost.likes.length}}
-          </div>
-          <div ng-if="0 < favouritePost.comments.length" ng-class="{'my-opinion': commentedByMe(favouritePost._id)}">
-            <i class="fa fa-comment-o" aria-hidden="true"></i> {{favouritePost.comments.length}}
-          </div>
-        </div>
-        <div class="post-content__text">{{favouritePost.content}}</div>
+<div class="container" ng-controller="NavbarCtrl">
+  <ng-include src="'views/navbar.html'"></ng-include>
+  <div class="welcome-page">
+    <div class="welcome-page__text">
+      <h3>Code Blog</h3>
+      <div class="welcome-page__line"></div>
+      <h1>Programming is a social activity.</h1>
+      <p>~ Robert C. Martin</p>
+      <div class="welcome-page__read-more">
+        <i class="fa fa-angle-down fa-3x" aria-hidden="true"></i>
       </div>
     </div>
   </div>
-  <div class="next col-xs-12 col-md-6 col-lg-4">
-    <div class="post-content post-content--next">
-      <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
-    </div>
+  <div class="header col-xs-12">
+    <h1>Your favourite posts</h1>
+    <div class="line"></div>
   </div>
-</div>
-<div class="header col-xs-12">
-  <h1>Newest posts</h1>
-  <div class="line"></div>
-</div>
-<div class="posts col-xs-12">
-  <div ng-repeat="post in posts">
-    <div class="col-xs-12 col-md-6 col-lg-4">
-      <div class="post-content">
-        <div class="post-content__hover">
-          <div class="title">
-            <h2>{{post.title}}</h2>
+  <div class="posts col-xs-12">
+    <div ng-repeat="favouritePost in favouritePosts">
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="post-content">
+          <div class="post-content__hover">
+            <div class="title">
+              <h2>{{favouritePost.title}}</h2>
+            </div>
+            <div class="read-more">
+              <div class="read-more__btn" ng-click="readMore(favouritePost._id)">Read more</div>
+            </div>
           </div>
-          <div class="read-more">
-            <div class="read-more__btn" ng-click="readMore(post._id)">Read more</div>
+          <div class="post-content__image" ng-style="{'background-image': 'url(' + favouritePost.photoLink + ')'}"></div>
+          <div class="post-content__opinion">
+            <div ng-if="0 < favouritePost.likes.length" ng-class="{'my-opinion': likedByMe(favouritePost._id)}">
+              <i class="fa fa-heart-o" aria-hidden="true"></i> {{favouritePost.likes.length}}
+            </div>
+            <div ng-if="0 < favouritePost.comments.length" ng-class="{'my-opinion': commentedByMe(favouritePost._id)}">
+              <i class="fa fa-comment-o" aria-hidden="true"></i> {{favouritePost.comments.length}}
+            </div>
           </div>
+          <div class="post-content__text">{{favouritePost.content}}</div>
         </div>
-        <div class="post-content__image" ng-style="{'background-image': 'url(' + post.photoLink + ')'}"></div>
-        <div class="post-content__opinion">
-          <div ng-if="0 < post.likes.length" ng-class="{'my-opinion': likedByMe(post._id)}">
-            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{post.likes.length}}
-          </div>
-          <div ng-if="0 < post.comments.length" ng-class="{'my-opinion': commentedByMe(post._id)}">
-            <i class="fa fa-comment-o" aria-hidden="true"></i> {{post.comments.length}}
-          </div>
-        </div>
-        <div class="post-content__text">{{post.content}}</div>
+      </div>
+    </div>
+    <div class="next col-xs-12 col-md-6 col-lg-4">
+      <div class="post-content post-content--next">
+        <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
       </div>
     </div>
   </div>
-  <div class="next col-xs-12 col-md-6 col-lg-4">
-    <div class="post-content post-content--next">
-      <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
+  <div class="header col-xs-12">
+    <h1>Newest posts</h1>
+    <div class="line"></div>
+  </div>
+  <div class="posts col-xs-12">
+    <div ng-repeat="post in posts">
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="post-content">
+          <div class="post-content__hover">
+            <div class="title">
+              <h2>{{post.title}}</h2>
+            </div>
+            <div class="read-more">
+              <div class="read-more__btn" ng-click="readMore(post._id)">Read more</div>
+            </div>
+          </div>
+          <div class="post-content__image" ng-style="{'background-image': 'url(' + post.photoLink + ')'}"></div>
+          <div class="post-content__opinion">
+            <div ng-if="0 < post.likes.length" ng-class="{'my-opinion': likedByMe(post._id)}">
+              <i class="fa fa-heart-o" aria-hidden="true"></i> {{post.likes.length}}
+            </div>
+            <div ng-if="0 < post.comments.length" ng-class="{'my-opinion': commentedByMe(post._id)}">
+              <i class="fa fa-comment-o" aria-hidden="true"></i> {{post.comments.length}}
+            </div>
+          </div>
+          <div class="post-content__text">{{post.content}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="next col-xs-12 col-md-6 col-lg-4">
+      <div class="post-content post-content--next">
+        <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
+      </div>
     </div>
   </div>
 </div>
+
+<!--<div style="height: 40px; width: 40px; background-image: url('https://static.pexels.com/photos/322207/pexels-photo-322207.jpeg');"></div>-->

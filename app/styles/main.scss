@@ -18,6 +18,7 @@
 
 .posts {
   margin-left: 250px;
+  margin-bottom: 100px;
   width: calc(100% - 250px);
 
   .post-content {
@@ -155,4 +156,17 @@
 
 .my-opinion {
   color: $aqua;
+}
+
+.footer {
+  height: 50px;
+  width: 100%;
+  margin-top: 50px;
+
+  p {
+    margin: 0 20px;
+    float: right;
+    color: $post-hover-text;
+    line-height: 50px;
+  }
 }

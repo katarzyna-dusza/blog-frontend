@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$rootScope', '$scope', '$window', 'moment', 'Posts', '_', function ($location, $log, $rootScope, $scope, $window, moment, Posts, _) {
-  $scope.search = false;
   $scope.filters = false;
   $scope.article = false;
   $scope.activeFilters = [];
@@ -11,7 +10,6 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$rootS
   });
 
   $scope.goBack = function() {
-    $scope.search = false;
     $scope.filters = false;
     $scope.article = false;
 
@@ -69,15 +67,6 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$rootS
     $scope.activeFilters.push(filter);
   };
 
-  $scope.openSearch = function() {
-    $scope.filters = false;
-    $scope.search = true;
-  };
-
-  $scope.closeSearch = function() {
-    $scope.search = false;
-  };
-
   $scope.filterByText = function(text) {
     Posts
       .getPostsByText({text: text})
@@ -91,7 +80,6 @@ angular.module('blogApp').controller('NavbarCtrl', ['$location', '$log', '$rootS
   };
 
   $scope.toggleFilterPosts = function() {
-    $scope.search = false;
     $scope.filters = !$scope.filters;
 
     getAllCategories();
