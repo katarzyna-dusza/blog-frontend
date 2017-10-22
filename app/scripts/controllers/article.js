@@ -102,7 +102,6 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
 
     var onLoad = function() {
       var articleId = $routeParams.id;
-      $rootScope.$emit('readArticle');
       getPostById(articleId);
     };
 
