@@ -1,12 +1,30 @@
-# blog
+# Frontend for a blog application
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+## Overview
+This repo contains an example of template for a blog application. 
+Backend can be found [here](https://github.com/katarzyna-dusza/blog-backend).
 
-## Build & development
+It's still in progress.
 
-Run `grunt` for building and `grunt serve` for preview.
+## Technologies
+- **AngularJS 1.5**
+- **SASS**
+- **Grunt**
 
-## Testing
+## Prepare backend
+To have a full functionality of this application, you have to set up a proper backend like [this one](https://github.com/katarzyna-dusza/blog-backend). 
 
-Running `grunt test` will run the unit tests with karma.
+## Run server
+1. Go to the project directory
+
+1. Install all dependencies
+    ```shell
+    npm install
+    bower install
+    ```
+
+1. Run
+    ```shell
+    grunt serve
+    ```
+The application should appear under localhost (port 9000 is set by default).
