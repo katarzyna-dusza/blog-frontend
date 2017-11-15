@@ -1,16 +1,6 @@
 <div class="container">
   <navbar place="main"></navbar>
-  <div class="welcome-page">
-    <div class="welcome-page__text">
-      <h3>Code Blog</h3>
-      <div class="welcome-page__line"></div>
-      <h1>Programming is a social activity.</h1>
-      <p>~ Robert C. Martin</p>
-      <div class="welcome-page__read-more">
-        <i class="fa fa-angle-down fa-3x" aria-hidden="true"></i>
-      </div>
-    </div>
-  </div>
+  <ng-include src="'views/welcome-page.html'"></ng-include>
   <div class="header col-xs-12">
     <h1>Your favourite posts</h1>
     <div class="line"></div>
@@ -40,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="next col-xs-12 col-md-6 col-lg-4">
+    <div class="col-xs-12 col-md-6 col-lg-4">
       <div class="post-content post-content--next">
         <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
       </div>
@@ -72,15 +62,17 @@
             </div>
           </div>
           <div class="post-content__text">{{post.content}}</div>
+          <div class="post-content__text post-content__text--mobile">
+            {{post.title}}
+            <div class="read-more__btn read-more__btn--mobile" ng-click="readMore(post._id)">Read more</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="next col-xs-12 col-md-6 col-lg-4">
+    <div class="col-xs-12 col-md-6 col-lg-4">
       <div class="post-content post-content--next">
         <i class="fa fa-5x fa-angle-right" aria-hidden="true"></i>
       </div>
     </div>
   </div>
 </div>
-
-<!--<div style="height: 40px; width: 40px; background-image: url('https://static.pexels.com/photos/322207/pexels-photo-322207.jpeg');"></div>-->

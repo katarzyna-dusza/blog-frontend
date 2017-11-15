@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('blogApp').service('Config', function () {
-   var API_HOST = "http://localhost";
-   var API_PORT = 3000;
+angular.module('blogApp').service('Config', function() {
+   const API_HOST = "http://localhost";
+   const API_PORT = 5000;
 
   return {
     apiHost: API_HOST,

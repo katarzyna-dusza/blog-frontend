@@ -4,20 +4,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 $welcome-image: url("../images/background.jpg");
 
 /*  COLORS  */
-$background: #202223;
-$welcome-page: #ddd;
+$main-color: #202223;
 $node-hover: #333333;
 $post-hover: #edefef;
 $post-hover-text: #535353;
 $white: white;
 $black: black;
+$grey: #ddd;
 $aqua: aquamarine;
 $red: red;
 $twitter: #2aa2ef;
-$outline-search: #4a4a4a;
 
 /*  FONTS  */
+$primary-font: 'Alegreya Sans SC', sans-serif;
+$welcome-page-blog: 'Julius Sans One', sans-serif;
 $welcome-page-text: 'Josefin Sans', sans-serif;
 $post-text: 'Josefin Sans', sans-serif;
-$welcome-page-blog: 'Julius Sans One', sans-serif;
-$primary-font: 'Alegreya Sans SC', sans-serif;

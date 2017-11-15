@@ -1,11 +1,9 @@
-@import "./theme";
-
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100i');
-
+@import "./theme";
 @import "./general";
 @import "./welcome-page";
 @import "./navbar";

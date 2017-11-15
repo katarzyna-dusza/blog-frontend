@@ -8,7 +8,7 @@
 
 .welcome-page {
   height: 100vh;
-  color: $welcome-page;
+  color: $grey;
   text-align: center;
   font-weight: 100;
   background-image: $welcome-image;
@@ -24,6 +24,10 @@
     top: 40%;
     font-family: $welcome-page-text;
     transform: translateY(-50%);
+
+    @media screen and (max-width: 480px) {
+      margin-left: 0;
+    }
   }
 
   &__line {
@@ -34,6 +38,10 @@
 
   h1 {
     font-size: 60px;
+
+    @media screen and (max-width: 480px) {
+      font-size: 30px;
+    }
   }
 
   h3 {

@@ -2,8 +2,8 @@
 
 angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$routeParams', '$rootScope', '$scope', 'moment', 'Posts', '_',
   function ($location, $log, $routeParams, $rootScope, $scope, moment, Posts, _) {
-    var USER_OBJECT = {"username": "Normal User"};
-    var USER_AVATAR = "https://static.pexels.com/photos/348528/pexels-photo-348528.jpeg";
+    const USER_OBJECT = {"username": "Normal User"};
+    const USER_AVATAR = "https://static.pexels.com/photos/348528/pexels-photo-348528.jpeg";
 
     $scope.activeFilters = [];
     $scope.like = false;
@@ -14,11 +14,11 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       Posts
         .toggleLike({id: $routeParams.id}, $scope.post.likes)
         .$promise
-        .then(function() {
+        .then(() => {
           $scope.like = !$scope.like;
           onLoad();
         })
-        ['catch'](function (err) {
+        ['catch']((err) => {
           $log.error(err);
         });
     };
@@ -29,10 +29,10 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       Posts
         .addComment({id: $routeParams.id}, $scope.post.comments)
         .$promise
-        .then(function() {
+        .then(() => {
           onLoad();
         })
-        ['catch'](function (err) {
+        ['catch']((err) => {
           $log.error(err);
         });
     };
@@ -41,9 +41,9 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       $location.url('/');
     };
 
-    var likedByMe = function() {
+    let isLikedByMe = function() {
       if (!_.isUndefined($scope.post.likes)) {
-        var likes = $scope.post.likes;
+        const likes = $scope.post.likes;
 
         return !_.isEmpty(_.where(likes, USER_OBJECT));
       }
@@ -51,7 +51,7 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       return false;
     };
 
-    var addLike = function() {
+    let addLike = function() {
       if (_.isUndefined($scope.post.likes)) {
         return _.extend($scope.post, {likes: [USER_OBJECT]});
       }
@@ -59,13 +59,13 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       return $scope.post.likes.push(USER_OBJECT);
     };
 
-    var removeLike = function() {
-      var index = _.indexOf($scope.post.likes, USER_OBJECT);
+    let removeLike = function() {
+      const index = _.indexOf($scope.post.likes, USER_OBJECT);
 
       $scope.post.likes.splice(index, 1);
     };
 
-    var toggleLike = function(like) {
+    let toggleLike = function(like) {
       if (like) {
         return removeLike();
       }
@@ -73,8 +73,8 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       return addLike();
     };
 
-    var addComment = function() {
-      var comment = {
+    let addComment = function() {
+      const comment = {
         avatar: USER_AVATAR,
         username: $scope.userName,
         text: $scope.comment
@@ -87,21 +87,21 @@ angular.module('blogApp').controller('ArticleCtrl', ['$location', '$log', '$rout
       return $scope.post.comments.push(comment);
     };
 
-    var getPostById = function(id) {
+    let getPostById = function(id) {
       Posts
         .getPostById({id: id})
         .$promise
-        .then(function(post) {
+        .then((post) => {
           $scope.post = post;
-          $scope.like = likedByMe();
+          $scope.like = isLikedByMe();
         })
-        ['catch'](function (err) {
+        ['catch']((err) => {
           $log.error(err);
         });
     };
 
-    var onLoad = function() {
-      var articleId = $routeParams.id;
+    let onLoad = function() {
+      const articleId = $routeParams.id;
       getPostById(articleId);
     };
 

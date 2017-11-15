@@ -1,101 +1,38 @@
-.hamburger {
-  outline: none;
-  margin: 25px 0;
-  height: 25px;
-
-  &--mobile {
-    display: none;
-    position: absolute;
-
-    @media screen and (max-width: 400px) {
-      display: block;
-    }
-  }
-
-  .line {
-    width: 40px;
-    height: 2px;
-    background-color: $white;
-    display: block;
-    margin: 10px;
-    transition: all 0.3s ease-in-out;
-
-    &--first {
-      margin-top: 25px;
-
-      &--arrow {
-        transform: rotate(-45deg);
-        width: 20px;
-        position: relative;
-        top: 5px;
-        margin-left: 6px;
-      }
-    }
-
-    &--last {
-      &--arrow {
-        transform: rotate(45deg);
-        width: 20px;
-        margin-top: -5px;
-        margin-left: 6px;
-      }
-    }
-  }
-
-  &:hover{
-    cursor: pointer;
-  }
-}
-
 .navbar-left {
-  position: fixed;
-  background-color: $background;
   height: 100vh;
+  width: 250px;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  background-color: $main-color;
   overflow-y: scroll;
   z-index: 1;
   transition: width 2s ease-in-out;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 480px) {
     display: none;
   }
 
   &--mobile {
     display: none;
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 480px) {
       display: block;
     }
   }
 
-  &__filters {
-    padding: 15px;
-  }
-
   &__nodes {
+    width: 250px;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    margin: 0 -15px;
-
-    &--close {
-      width: 0;
-      transition: width 2s ease-in-out;
-    }
-
-    &--close {
-      width: 250px;
-      transition: width 2s ease-in-out;
-    }
 
     .node {
+      width: 100%;
+      padding: 10px 0 10px 50px;
       color: $white;
       font-size: 20px;
-      padding: 10px 0 10px 50px;
       font-family: $primary-font;
-      width: 100%;
       cursor: pointer;
       outline: none;
 
@@ -105,6 +42,10 @@
 
       &--noclicable {
         cursor: default;
+
+        &:hover {
+          background-color: transparent !important;
+        }
       }
 
       &:hover {
@@ -113,7 +54,7 @@
     }
   }
 
-  .search {
+  &__search {
     position: fixed;
     bottom: 0;
 
@@ -143,35 +84,87 @@
     }
   }
 
-  .tags, .categories {
-    float: left;
-    margin: 5px;
-    color: $white;
-    font-size: 20px;
-    font-family: $primary-font;
+  &__filters {
+    padding: 15px;
+
+    .tags, .categories {
+      margin: 5px;
+      float: left;
+      color: $white;
+      font-size: 20px;
+      font-family: $primary-font;
+      outline: none;
+
+      &__filter {
+        min-width: 40px;
+        padding: 5px;
+        text-align: center;
+        border-radius: 5px;
+        border: 1px aquamarine solid;
+        display: inline-block;
+        cursor: pointer;
+
+        &--selected {
+          background-color: aquamarine;
+          color: black;
+        }
+
+        &:hover {
+          border-color: darkgrey;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    height: 25px;
+    margin-top: 35px;
     outline: none;
 
-    &__filter {
-      border-radius: 5px;
-      border: 1px aquamarine solid;
-      text-align: center;
-      display: inline-block;
-      min-width: 40px;
-      padding: 5px;
+    &--mobile {
+      display: none;
+      position: absolute;
+
+      @media screen and (max-width: 400px) {
+        display: block;
+      }
+    }
+
+    .line {
+      height: 2px;
+      width: 40px;
+      margin: 10px;
+      background-color: $white;
+      display: block;
+      transition: all 0.3s ease-in-out;
+
+      &--first {
+        margin-top: 25px;
+      }
+
+      &--first-arrow {
+        margin-top: 25px;
+        top: 6px;
+        transform: rotate(-45deg);
+        position: relative;
+      }
+
+      &--middle-arrow {
+        display: none;
+      }
+
+      &--last-arrow {
+        margin-top: -6px;
+        transform: rotate(45deg);
+      }
+    }
+
+    &:hover{
       cursor: pointer;
-
-      &--selected {
-        background-color: aquamarine;
-        color: black;
-      }
-
-      &:hover {
-        border-color: darkgrey;
-      }
-
-      &:focus {
-        outline: none;
-      }
     }
   }
 }

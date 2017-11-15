@@ -4,6 +4,11 @@
   padding-right: 50px;
   font-family: $primary-font;
 
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    margin-left: 0;
+  }
+
   h1 {
     font-weight: bold;
   }
@@ -21,11 +26,20 @@
   margin-bottom: 100px;
   width: calc(100% - 250px);
 
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .post-content {
     height: 450px;
     width: 350px;
     margin: 20px auto;
-    background-color: $background;
+    background-color: $main-color;
+
+    @media screen and (max-width: 480px) {
+      width: 100%;
+    }
 
     &__image {
       height: 200px;
@@ -33,6 +47,10 @@
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+
+      @media screen and (max-width: 480px) {
+        width: 100%;
+      }
 
       img {
         width: 300px;
@@ -51,6 +69,10 @@
       .fa {
         margin-left: 20px;
       }
+
+      .my-opinion {
+        color: $aqua;
+      }
     }
 
     &__text {
@@ -60,6 +82,19 @@
       font-family: $post-text;
       font-size: 21px;
       overflow: hidden;
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+
+      &--mobile {
+        text-align: center;
+        display: none;
+
+        @media screen and (max-width: 1024px) {
+          display: block;
+        }
+      }
     }
 
     &__hover {
@@ -95,12 +130,11 @@
       text-align: center;
       color: $post-hover-text;
       background-color: $post-hover;
-      display: table-cell;
-      vertical-align: middle;
       cursor: default;
 
       .fa-5x {
         font-size: 10em;
+        line-height: 450px;
       }
     }
 
@@ -145,28 +179,12 @@
         font-size: 20px;
         border: 2px solid $aqua;
         outline: none;
+
+        &--mobile {
+          margin-top: 50px;
+          color: $post-hover-text;
+        }
       }
     }
-  }
-}
-
-.next {
-  margin-top: 20px;
-}
-
-.my-opinion {
-  color: $aqua;
-}
-
-.footer {
-  height: 50px;
-  width: 100%;
-  margin-top: 50px;
-
-  p {
-    margin: 0 20px;
-    float: right;
-    color: $post-hover-text;
-    line-height: 50px;
   }
 }

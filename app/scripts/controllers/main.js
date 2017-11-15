@@ -2,7 +2,7 @@
 
 angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$rootScope', '$scope', 'Posts',
   function ($location, $log, $rootScope, $scope, Posts) {
-    var USER = "Normal User";
+    const USER = "Normal User";
 
     $scope.search = false;
     $scope.filters = false;
@@ -19,7 +19,7 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$rootSco
 
     $scope.commentedByMe = function(id) {
       if (!_.isUndefined(getPost(id)) && !_.isUndefined(getPost(id).comments)) {
-        var comments = getPost(id).comments;
+        const comments = getPost(id).comments;
 
         return !_.isEmpty(_.where(comments, {username: USER}));
       }
@@ -29,7 +29,7 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$rootSco
 
     $scope.likedByMe = function(id) {
       if (!_.isUndefined(getPost(id)) && !_.isUndefined(getPost(id).likes)) {
-        var likes = getPost(id).likes;
+        const likes = getPost(id).likes;
 
         return !_.isEmpty(_.where(likes, {username: USER}));
       }
@@ -37,35 +37,35 @@ angular.module('blogApp').controller('MainCtrl', ['$location', '$log', '$rootSco
       return false;
     };
 
-    var getPost = function(id) {
+    let getPost = function(id) {
       return _.find($scope.posts, {"_id": id});
     };
 
-    var getAllPosts = function() {
+    let getAllPosts = function() {
       Posts
         .query()
         .$promise
-        .then(function(posts) {
+        .then((posts) => {
           $scope.posts = posts;
         })
-        ['catch'](function (err) {
+        ['catch']((err) => {
           $log.error(err);
         });
     };
 
-    var getFavouritePosts = function(username) {
+    let getFavouritePosts = function(username) {
       Posts
         .getMyFavouritePosts({userName: username})
         .$promise
-        .then(function(posts) {
+        .then((posts) => {
           $scope.favouritePosts = posts;
         })
-        ['catch'](function (err) {
+        ['catch']((err) => {
           $log.error(err);
         });
     };
 
-    var onLoad = function() {
+    let onLoad = function() {
       getAllPosts();
       getFavouritePosts(USER);
     };
